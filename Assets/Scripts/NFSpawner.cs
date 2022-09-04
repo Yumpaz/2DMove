@@ -5,6 +5,7 @@ using UnityEngine;
 public class NFSpawner : MonoBehaviour
 {
     public GameObject Floor;
+    private float x, y, z;
     
     private void Start()
     {
@@ -13,10 +14,10 @@ public class NFSpawner : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        GetComponent<BoxCollider2D>().enabled = false;
         if (collision.gameObject.tag == "Player")
         {
             Invoke("SpawnFloor", 0);
-            GetComponent<BoxCollider2D>().enabled = false;
         }
         
     }

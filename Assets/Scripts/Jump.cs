@@ -15,12 +15,14 @@ public class Jump : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (grounded)
         {
-            jumping = true;
+            if (Input.GetButtonDown("Jump"))
+            {
+                jumping = true;
+            }
         }
 
         if (body.velocity.y < 0)
@@ -39,28 +41,28 @@ public class Jump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (grounded)
+        if (jumping)
         {
-            if (jumping)
-            {
-                body.AddForce(new Vector2(body.velocity.x, jforce), ForceMode2D.Impulse);
-                jumping = false;
-            }
-        }
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Platform")
-        {
-            grounded = true;
+            body.AddForce(new Vector2(body.velocity.x, jforce), ForceMode2D.Impulse);
+            jumping = false;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Platform")
+        {
+            grounded = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            grounded = true;
+        }
+        else
         {
             grounded = false;
         }
