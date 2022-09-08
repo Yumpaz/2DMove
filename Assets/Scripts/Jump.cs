@@ -43,7 +43,6 @@ public class Jump : MonoBehaviour
         if (jumping)
         {
             body.AddForce(new Vector2(body.velocity.x, jforce), ForceMode2D.Impulse);
-            GameManager.Instance.IncreaseScore();
             jumping = false;
         }
     }
@@ -51,6 +50,5 @@ public class Jump : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
-        print("is grounded");
     }
 }
