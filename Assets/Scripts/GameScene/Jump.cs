@@ -42,7 +42,8 @@ public class Jump : MonoBehaviour
     {
         if (jumping)
         {
-            body.AddForce(new Vector2(body.velocity.x, jforce), ForceMode2D.Impulse);
+            body.velocity = new Vector2(body.velocity.x, jforce);
+            GameManager.Instance.increaseScore();
             jumping = false;
         }
     }
