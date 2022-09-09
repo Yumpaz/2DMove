@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Floor: {fileID: 8602894601313511126}
+  Platform: {fileID: 1829552735051754285, guid: e4cfacaa8585e1842bd176b26d304d7d, type: 3}
 --- !u!61 &6920162969987795822
 BoxCollider2D:
   m_ObjectHideFlags: 0

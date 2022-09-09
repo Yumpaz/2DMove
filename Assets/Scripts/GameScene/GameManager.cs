@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.play:
                 MenuManager.Instance.SetScore(scorevalue);
-                if (scorevalue == 5)
+                if (scorevalue == 25)
                 {
                     UpdateGameState(GameState.end);
                 }

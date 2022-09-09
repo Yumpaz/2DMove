@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     private Rigidbody2D body;
+    [SerializeField] private GameObject djplatform;
     [SerializeField] private BoxCollider2D coll;
     private bool jumping;
     private bool grounded;
@@ -15,6 +16,7 @@ public class Jump : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
+        djplatform.GetComponent<BoxCollider2D>().enabled = !djplatform.GetComponent<BoxCollider2D>().enabled;
     }
 
     private void Update()
@@ -44,6 +46,7 @@ public class Jump : MonoBehaviour
         {
             body.velocity = new Vector2(body.velocity.x, jforce);
             GameManager.Instance.increaseScore();
+            djplatform.GetComponent<BoxCollider2D>().enabled =  !djplatform.GetComponent<BoxCollider2D>().enabled;
             jumping = false;
         }
     }
