@@ -54,9 +54,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.play:
                 MenuManager.Instance.SetScore(scorevalue);
-                if (Input.GetButtonDown("Fire3"))
+                if (Input.GetButtonDown("Fire3"))//Cambio de carta
                 {
                     ImageChange();
+                    MenuManager.Instance.SetCards(inventory);
+                }
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    ShootCard();
                     MenuManager.Instance.SetCards(inventory);
                 }
                 if (scorevalue == 25)
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour
         inventory[4] = "empty";
     }
 
-    private void addorder(string addeditem)
+    private void addorder(string addeditem)//Función para saber donde agregar item recogido
     {
         if(inventory[0] == "empty")
         {
@@ -116,7 +121,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ImageChange()
+    public void ShootCard()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            inventory[i] = inventory[i + 1];
+        }
+        inventory[4] = "empty";
+    }
+
+    public void ImageChange()//Función ejecutada para cambiar la carta seleccionada
     {
         string temp;
 
@@ -167,6 +181,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+
 
     public void AddInventory(string item)
     {
