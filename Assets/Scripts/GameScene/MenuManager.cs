@@ -8,15 +8,9 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
     public TextMeshProUGUI tscore;
-    public Image card1;
-    public Image card2;
-    public Image card3;
-    public Image card4;
-    public Image card5;
-    public Sprite rock;
-    public Sprite paper;
-    public Sprite scissors;
-    public Sprite empty;
+    public Image card1, card2, card3, card4, card5;
+    public Image health1, health2, health3;
+    public Sprite rock, paper, scissors, empty, hearth;
     private void Awake()
     {
         Instance = this;
@@ -25,6 +19,33 @@ public class MenuManager : MonoBehaviour
     public void SetScore(int Score)
     {
         tscore.text = "Score: " + Score;
+    }
+
+    public void SetHealth(int health)
+    {
+        switch (health)
+        {
+            case 0:
+                health1.sprite = empty;
+                health2.sprite = empty;
+                health3.sprite = empty;
+                break;
+            case 1:
+                health1.sprite = hearth;
+                health2.sprite = empty;
+                health3.sprite = empty;
+                break;
+            case 2:
+                health1.sprite = hearth;
+                health2.sprite = hearth;
+                health3.sprite = empty;
+                break;
+            case 3:
+                health1.sprite = hearth;
+                health2.sprite = hearth;
+                health3.sprite = hearth;
+                break;
+        }
     }
 
     public void SetCards(string[] inventory)

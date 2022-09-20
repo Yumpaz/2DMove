@@ -7,16 +7,19 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager Instance;
-    private int scorevalue = 0;
+    private int scorevalue = 0, health;
     private GameState _gameState = GameState.start;
     string[] inventory = new string[5];
-    public Sprite paper;
-    public Sprite scissors;
-    public Sprite rock;
+    public Sprite paper, scissors, rock;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void initialHealth()
+    {
+        health = 3;
     }
 
     public bool FullInventory()
@@ -50,6 +53,8 @@ public class GameManager : MonoBehaviour
                 MenuManager.Instance.SetScore(scorevalue);
                 initialinventory();
                 MenuManager.Instance.SetCards(inventory);
+                initialHealth();
+                MenuManager.Instance.SetHealth(health);
                 UpdateGameState(GameState.play);
                 break;
             case GameState.play:
@@ -64,7 +69,7 @@ public class GameManager : MonoBehaviour
                     ShootCard();
                     MenuManager.Instance.SetCards(inventory);
                 }
-                if (scorevalue == 25)
+                if (scorevalue == 20)
                 {
                     UpdateGameState(GameState.end);
                 }
@@ -209,6 +214,29 @@ public class GameManager : MonoBehaviour
             }
         }
         MenuManager.Instance.SetCards(inventory);
+    }
+
+    public void LostHealth()
+    {
+        if(health > 0)
+        {
+            health --;
+        }
+        MenuManager.Instance.SetHealth(health);
+    }
+
+    public void GainHealth()
+    {
+        if (health < 3)
+        {
+            health++;
+        }
+        MenuManager.Instance.SetHealth(health);
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
 
     public enum GameState
