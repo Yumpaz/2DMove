@@ -90,6 +90,11 @@ public class GameManager : MonoBehaviour
         inventory[4] = "empty";
     }
 
+    public string Get1Inventory()
+    {
+        return inventory[0];
+    }
+
     private void addorder(string addeditem)//Función para saber donde agregar item recogido
     {
         if(inventory[0] == "empty")
