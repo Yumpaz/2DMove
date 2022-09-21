@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private GameState _gameState = GameState.start;
     string[] inventory = new string[5];
     public Sprite paper, scissors, rock;
+    public string bullettype;
 
     private void Awake()
     {
@@ -133,11 +134,17 @@ public class GameManager : MonoBehaviour
 
     public void ShootCard()
     {
-        for(int i = 0; i < 4; i++)
+        bullettype = inventory[0];
+        for (int i = 0; i < 4; i++)
         {
             inventory[i] = inventory[i + 1];
         }
         inventory[4] = "empty";
+    }
+
+    public string GetBulletType()
+    {
+        return bullettype;
     }
 
     public void ImageChange()//Función ejecutada para cambiar la carta seleccionada

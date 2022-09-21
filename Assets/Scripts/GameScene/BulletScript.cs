@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    private Vector3 mousePos, direction, rotation;
+    private Vector3 mousePos, direction;
     private Camera mainCam;
     private Rigidbody2D rb;
-    private float force = 8, rot;
+    public float force = 10;
     
     void Start()
     {
@@ -15,10 +15,7 @@ public class BulletScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         direction = mousePos - transform.position;
-        rotation = transform.position - mousePos;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
-        rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
 
     void Update()
