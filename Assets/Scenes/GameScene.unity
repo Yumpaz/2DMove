@@ -265,6 +265,7 @@ MonoBehaviour:
   paper: {fileID: 21300000, guid: 8a0aa9d152809c04ab5ee809ba53d739, type: 3}
   scissors: {fileID: 21300000, guid: 54d801eee4d8adb428f3301a5d917148, type: 3}
   rock: {fileID: 21300000, guid: b39c6f249d8fe6643a943b140b036726, type: 3}
+  bullettype: 
 --- !u!4 &51731744
 Transform:
   m_ObjectHideFlags: 0
@@ -1850,6 +1851,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 3060853429306999833, guid: 1d7421d596f77bb4ebd0ca7fd0b489a0, type: 3}
+  brock: {fileID: 3060853429306999833, guid: 1d7421d596f77bb4ebd0ca7fd0b489a0, type: 3}
+  bpaper: {fileID: 3392854309856402715, guid: c84d0acff6290f040a81dbccf735a53f, type: 3}
+  bscissors: {fileID: 2291575076472749276, guid: 075081dfb782e994e9e3724a50fb0657, type: 3}
   bulletTransform: {fileID: 1305634695}
   canFire: 1
 --- !u!1 &1071069251

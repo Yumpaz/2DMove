@@ -8,9 +8,12 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
     private int scorevalue = 0, health;
+    private float timer, timeBetweenFiring = 0.4f;
     private GameState _gameState = GameState.start;
     string[] inventory = new string[5];
     public Sprite paper, scissors, rock;
+    public string bullettype;
+    private bool canFire;
 
     private void Awake()
     {
@@ -73,6 +76,15 @@ public class GameManager : MonoBehaviour
                 {
                     UpdateGameState(GameState.end);
                 }
+                if (!canFire)
+                {
+                    timer += Time.deltaTime;
+                    if (timer > timeBetweenFiring)
+                    {
+                        canFire = true;
+                        timer = 0;
+                    }
+                }
                 break;
             case GameState.end:
                 PlayerPrefs.SetInt("scorevalue", scorevalue);
@@ -93,6 +105,11 @@ public class GameManager : MonoBehaviour
     public string Get1Inventory()
     {
         return inventory[0];
+    }
+
+    public string GetBulletType()
+    {
+        return bullettype;
     }
 
     private void addorder(string addeditem)//Función para saber donde agregar item recogido
@@ -133,11 +150,16 @@ public class GameManager : MonoBehaviour
 
     public void ShootCard()
     {
-        for(int i = 0; i < 4; i++)
+        bullettype = inventory[0];
+        if (canFire)
         {
-            inventory[i] = inventory[i + 1];
+            for (int i = 0; i < 4; i++)
+            {
+                inventory[i] = inventory[i + 1];
+            }
+            inventory[4] = "empty";
+            canFire = false;
         }
-        inventory[4] = "empty";
     }
 
     public void ImageChange()//Función ejecutada para cambiar la carta seleccionada

@@ -20,9 +20,4 @@ public class BulletScript : MonoBehaviour
         rot = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
-
-    void Update()
-    {
-        
-    }
 }
