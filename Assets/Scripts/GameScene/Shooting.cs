@@ -7,15 +7,9 @@ public class Shooting : MonoBehaviour
     private Camera mainCam;
     private Vector3 mousePos, rotation;
     private float rotZ, timer, timeBetweenFiring = 0.4f;
-    public GameObject bullet, brock, bpaper, bscissors;
+    public GameObject bullet;
     public Transform bulletTransform;
     public bool canFire;
-    public string bullettype;
-
-    private void Awake()
-    {
-        
-    }
 
     void Start()
     {
@@ -45,24 +39,8 @@ public class Shooting : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && canFire)
         {
-            bullettype = GameManager.Instance.GetBulletType();
             canFire = false;
-            switch (bullettype)
-            {
-                case ("rock"):
-                    bullet = brock;
-                    break;
-                case ("paper"):
-                    bullet = bpaper;
-                    break;
-                case ("scissors"):
-                    bullet = bscissors;
-                    break;
-            }
-            if (bullettype != "empty")
-            {
-                Instantiate(bullet, bulletTransform.position, Quaternion.identity);
-            }
+            Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
     }
 }

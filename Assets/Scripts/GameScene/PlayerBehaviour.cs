@@ -16,9 +16,4 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Status = GameManager.Instance.Get1Inventory();//Obtener el estado del jugador, con el primer item del inventario.
     }
-
-    public string GetStatus()
-    {
-        return Status;
-    }
 }
