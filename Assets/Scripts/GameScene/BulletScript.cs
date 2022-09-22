@@ -7,7 +7,7 @@ public class BulletScript : MonoBehaviour
     private Vector3 mousePos, direction, rotation;
     private Camera mainCam;
     private Rigidbody2D rb;
-    private float force = 8, rot;
+    private float force = 10, rot;
     
     void Start()
     {
