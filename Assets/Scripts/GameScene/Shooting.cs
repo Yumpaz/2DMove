@@ -11,6 +11,17 @@ public class Shooting : MonoBehaviour
     public Transform bulletTransform;
     public bool canFire;
     private string bullettype;
+    public static Shooting Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public string GetBulletType()
+    {
+        return bullettype;
+    }
 
     void Start()
     {
