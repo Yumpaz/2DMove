@@ -8,13 +8,8 @@ public class BulletScript : MonoBehaviour
     private Camera mainCam;
     private Rigidbody2D rb;
     public float force = 10, rot;
-    public static BulletScript Instance;
-    public string BulletType;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+    public string EnemyType, BulletType;
+    private Enemy InteractEnemy;
 
     void Start()
     {
@@ -29,8 +24,75 @@ public class BulletScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
     }
 
-    public string GetBulletType()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        return BulletType;
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            InteractEnemy = collision.GetComponent<Enemy>();
+            EnemyType = InteractEnemy.GetEnemyType();
+            switch (BulletType)
+            {
+                case ("rock"):
+                    switch (EnemyType)
+                    {
+                        case ("rock"):
+                            InteractEnemy.ShowStatus();
+                            InteractEnemy.HideStatus2();
+                            Destroy(this.gameObject);
+                            break;
+                        case ("paper"):
+                            InteractEnemy.ShowStatus();
+                            GameManager.Instance.LostHealth();
+                            InteractEnemy.HideStatus2();
+                            Destroy(this.gameObject);
+                            break;
+                        case ("scissors"):
+                            Destroy(InteractEnemy.gameObject);
+                            Destroy(this.gameObject);
+                            break;
+                    }
+                    break;
+                case ("paper"):
+                    switch (EnemyType)
+                    {
+                        case ("rock"):
+                            Destroy(InteractEnemy.gameObject);
+                            Destroy(this.gameObject);
+                            break;
+                        case ("paper"):
+                            InteractEnemy.ShowStatus();
+                            InteractEnemy.HideStatus2();
+                            Destroy(this.gameObject);
+                            break;
+                        case ("scissors"):
+                            InteractEnemy.ShowStatus();
+                            GameManager.Instance.LostHealth();
+                            InteractEnemy.HideStatus2();
+                            Destroy(this.gameObject);
+                            break;
+                    }
+                    break;
+                case ("scissors"):
+                    switch (EnemyType)
+                    {
+                        case ("rock"):
+                            InteractEnemy.ShowStatus();
+                            GameManager.Instance.LostHealth();
+                            InteractEnemy.HideStatus2();
+                            Destroy(this.gameObject);
+                            break;
+                        case ("paper"):
+                            Destroy(InteractEnemy.gameObject);
+                            Destroy(this.gameObject);
+                            break;
+                        case ("scissors"):
+                            InteractEnemy.ShowStatus();
+                            InteractEnemy.HideStatus2();
+                            Destroy(this.gameObject);
+                            break;
+                    }
+                    break;
+            }
+        }
     }
 }

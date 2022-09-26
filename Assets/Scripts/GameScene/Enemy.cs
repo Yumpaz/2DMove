@@ -4,68 +4,76 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private int health;
-    private string BulletType, Status = "rock";
+    private int xrandom;
+    private string Status;
+    public Sprite rock, paper, scissors, empty;
+    public GameObject StatusCard; 
 
     private void Awake()
     {
-        health = 1;
+        SetEnemyStatus();
+        HideStatus();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    private void SetEnemyStatus()
     {
-        if (collision.gameObject.tag == "Bullet")
+        xrandom = Random.Range(0, 3);
+        switch (xrandom)
         {
-            BulletType = BulletScript.Instance.GetBulletType();
-            switch (Status)
-            {
-                case ("rock"):
-                    switch (BulletType)
-                    {
-                        case ("rock"):
-
-                            break;
-                        case ("paper"):
-                            Destroy(this.gameObject);
-                            break;
-
-                        case ("scissors"):
-                            GameManager.Instance.LostHealth();
-                            break;
-                    }
-                    break;
-                case ("paper"):
-                    switch (BulletType)
-                    {
-                        case ("rock"):
-                            GameManager.Instance.LostHealth();
-                            break;
-                        case ("paper"):
-
-                            break;
-
-                        case ("scissors"):
-                            Destroy(this.gameObject);
-                            break;
-                    }
-                    break;
-                case ("scissors"):
-                    switch (BulletType)
-                    {
-                        case ("rock"):
-                            Destroy(this.gameObject);
-                            break;
-                        case ("paper"):
-                            GameManager.Instance.LostHealth();
-                            break;
-
-                        case ("scissors"):
-
-                            break;
-                    }
-                    break;
-            }
-            GameManager.Instance.LostHealth();
+            case (0):
+                Status = "rock";
+                break;
+            case (1):
+                Status = "paper";
+                break;
+            case (2):
+                Status = "scissors";
+                break;
         }
+    }
+
+    public void ShowStatus()
+    {
+        switch (Status)
+        {
+            case ("rock"):
+                StatusCard.GetComponent<SpriteRenderer>().sprite = rock;
+                break;
+            case ("paper"):
+                StatusCard.GetComponent<SpriteRenderer>().sprite = paper;
+                break;
+            case ("scissors"):
+                StatusCard.GetComponent<SpriteRenderer>().sprite = scissors;
+                break;
+        }
+    }
+
+    public IEnumerator HideEnemyStatus()
+    {
+        yield return new WaitForSeconds(0.2f);
+        HideStatus();
+        yield return new WaitForSeconds(0.2f);
+        ShowStatus();
+        yield return new WaitForSeconds(0.2f);
+        HideStatus();
+        yield return new WaitForSeconds(0.2f);
+        ShowStatus();
+        yield return new WaitForSeconds(0.2f);
+        HideStatus();
+    }
+
+    public void HideStatus2()
+    {
+        StartCoroutine(HideEnemyStatus());
+    }
+
+    public void HideStatus()
+    {
+        StatusCard.GetComponent<SpriteRenderer>().sprite = empty;
+    }
+
+    public string GetEnemyType()
+    {
+        return Status;
     }
 }
