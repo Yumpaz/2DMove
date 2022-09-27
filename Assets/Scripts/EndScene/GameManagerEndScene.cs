@@ -14,6 +14,6 @@ public class GameManagerEndScene : MonoBehaviour
     }
     public void OnRestartClick()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Level1");
     }
 }

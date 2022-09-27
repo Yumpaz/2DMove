@@ -14,15 +14,23 @@ public class GameManager : MonoBehaviour
     public Sprite paper, scissors, rock;
     public string bullettype;
     private bool canFire;
+    public Texture2D crosshair;
+    public EnemySpawner Spawner;
 
     private void Awake()
     {
         Instance = this;
+        Cursor.SetCursor(crosshair, Vector2.zero, CursorMode.ForceSoftware);
     }
 
     public void initialHealth()
     {
         health = 3;
+    }
+
+    public void SpawnHealth()
+    {
+        Spawner.SpawnHealth();
     }
 
     public bool FullInventory()
@@ -72,7 +80,7 @@ public class GameManager : MonoBehaviour
                     ShootCard();
                     MenuManager.Instance.SetCards(inventory);
                 }
-                if (scorevalue == 20)
+                if (health == 0)
                 {
                     UpdateGameState(GameState.end);
                 }
@@ -250,6 +258,7 @@ public class GameManager : MonoBehaviour
             health --;
         }
         MenuManager.Instance.SetHealth(health);
+        ScreenShake.Instance.SetStart();
     }
 
     public void GainHealth()

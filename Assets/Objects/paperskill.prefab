@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3412878926407489632}
   - component: {fileID: 3412878926407489633}
   - component: {fileID: 3412878926407489638}
-  m_Layer: 0
+  - component: {fileID: 3180018356830467519}
+  m_Layer: 7
   m_Name: paperskill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,3 +124,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34f0c75fa2ff2c24e80a1c07893c5179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &3180018356830467519
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3412878926407489634}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

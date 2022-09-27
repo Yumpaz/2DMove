@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 10
   rot: 0
+  EnemyType: 
   BulletType: 
 --- !u!61 &-7146269750945762074
 BoxCollider2D:

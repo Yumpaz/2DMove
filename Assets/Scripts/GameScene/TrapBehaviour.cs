@@ -6,7 +6,7 @@ public class TrapBehaviour : MonoBehaviour
 {
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.LostHealth();
         }

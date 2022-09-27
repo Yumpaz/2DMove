@@ -7,12 +7,13 @@ public class BulletScript : MonoBehaviour
     private Vector3 mousePos, direction, rotation;
     private Camera mainCam;
     private Rigidbody2D rb;
-    public float force = 10, rot;
+    private float force, rot;
     public string EnemyType, BulletType;
     private Enemy InteractEnemy;
 
     void Start()
     {
+        force = 50;
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
         BulletType = Shooting.Instance.GetBulletType();
@@ -47,6 +48,8 @@ public class BulletScript : MonoBehaviour
                             Destroy(this.gameObject);
                             break;
                         case ("scissors"):
+                            GameManager.Instance.increaseScore();
+                            GameManager.Instance.SpawnHealth();
                             Destroy(InteractEnemy.gameObject);
                             Destroy(this.gameObject);
                             break;
@@ -56,6 +59,8 @@ public class BulletScript : MonoBehaviour
                     switch (EnemyType)
                     {
                         case ("rock"):
+                            GameManager.Instance.increaseScore();
+                            GameManager.Instance.SpawnHealth();
                             Destroy(InteractEnemy.gameObject);
                             Destroy(this.gameObject);
                             break;
@@ -82,6 +87,8 @@ public class BulletScript : MonoBehaviour
                             Destroy(this.gameObject);
                             break;
                         case ("paper"):
+                            GameManager.Instance.increaseScore();
+                            GameManager.Instance.SpawnHealth();
                             Destroy(InteractEnemy.gameObject);
                             Destroy(this.gameObject);
                             break;

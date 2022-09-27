@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    private float _horizontal;
-    private float speed = 5;
-    private void Start()
-    {
-        
-    }
+    private float _horizontal, speed = 12;
+
     private void FixedUpdate()
     {
         _horizontal = Input.GetAxis("Horizontal");

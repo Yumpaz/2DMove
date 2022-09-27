@@ -7,12 +7,19 @@ public class Enemy : MonoBehaviour
     private int xrandom;
     private string Status;
     public Sprite rock, paper, scissors, empty;
-    public GameObject StatusCard; 
+    public GameObject StatusCard;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
         SetEnemyStatus();
         HideStatus();
+        rb = this.GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        rb.velocity = new Vector3(0, -2, 0);
     }
 
     private void SetEnemyStatus()
