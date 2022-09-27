@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
         inventory[2] = "scissors";
         inventory[3] = "empty";
         inventory[4] = "empty";
+        bullettype = inventory[0];
     }
 
     public string Get1Inventory()

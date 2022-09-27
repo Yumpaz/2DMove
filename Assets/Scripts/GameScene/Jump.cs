@@ -39,7 +39,7 @@ public class Jump : MonoBehaviour
     {
         BoxCollider2D platformCollider = _currentonewayplatform.GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(this.gameObject.GetComponent<BoxCollider2D>(), platformCollider);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(this.gameObject.GetComponent<BoxCollider2D>(), platformCollider, false);
     }
 
@@ -87,7 +87,7 @@ public class Jump : MonoBehaviour
             _canDash = true;
         }
 
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (_currentonewayplatform != null) { }
             {
