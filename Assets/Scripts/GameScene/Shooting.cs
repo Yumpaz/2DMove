@@ -51,6 +51,7 @@ public class Shooting : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && canFire)
         {
             bullettype = GameManager.Instance.GetBulletType();
+            GameManager.Instance.ShootCard();
             canFire = false;
             switch (bullettype)
             {

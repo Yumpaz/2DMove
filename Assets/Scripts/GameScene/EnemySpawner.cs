@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("SpawnEnemy", 0, 2);
-        InvokeRepeating("SpawnItem2", 1, 1);
+        InvokeRepeating("SpawnItem2", 1, 2);
     }
 
     void SpawnEnemy()
@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
     public IEnumerator SpawnItemTimer(string EnemyType)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         switch (EnemyType)
         {
             case ("rock"):

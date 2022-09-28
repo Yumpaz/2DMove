@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    private Rigidbody2D body;
     private TrailRenderer _trailRenderer;
     [SerializeField] private BoxCollider2D coll;
-    private bool jumping, _isDashing, _canDash = true;
-    private float jforce = 12, fmult = 6.5f, ljmult = 6f, dashingVelocity = 18, dashingtime = 0.2f;
+    [SerializeField] Rigidbody2D body;
+    Animator animator;
+    private bool facingRight = true, ismoving = false, jumping, _isDashing, _canDash = true;
+    private float _horizontal, speed = 14, jforce = 9, fmult = 10f, ljmult = 4f, dashingVelocity = 22, dashingtime = 0.2f;
     private Vector2 _dashingDir;
+    private Vector3 currentScale;
     [SerializeField] private LayerMask jumpableGround;
     private GameObject _currentonewayplatform;
 
@@ -50,19 +52,6 @@ public class Jump : MonoBehaviour
             jumping = true;
         }
 
-        if (body.velocity.y < 0)
-        {
-            body.gravityScale = fmult;
-        }
-        else if (body.velocity.y > 0 && !Input.GetButton("Jump"))
-        {
-            body.gravityScale = ljmult;
-        }
-        else
-        {
-            body.gravityScale = 1;
-        }
-
         if (Input.GetButtonDown("Dash") && _canDash)
         {
             _isDashing = true;
@@ -74,17 +63,6 @@ public class Jump : MonoBehaviour
                 _dashingDir = new Vector2(transform.localScale.x, 0);
             }
             StartCoroutine(StopDashing());
-        }
-
-        if (_isDashing)
-        {
-            body.velocity = _dashingDir.normalized * dashingVelocity;
-            return;
-        }
-
-        if (IsGrounded())
-        {
-            _canDash = true;
         }
 
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
@@ -109,6 +87,29 @@ public class Jump : MonoBehaviour
         {
             body.velocity = new Vector2(body.velocity.x, jforce);
             jumping = false;
+        }
+
+        if (body.velocity.y < 0)
+        {
+            body.gravityScale = fmult;
+        }
+        else if (body.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            body.gravityScale = ljmult;
+        }
+        else
+        {
+            body.gravityScale = 1;
+        }
+
+        if (_isDashing)
+        {
+            body.velocity = _dashingDir.normalized * dashingVelocity;
+        }
+
+        if (IsGrounded())
+        {
+            _canDash = true;
         }
     }
 

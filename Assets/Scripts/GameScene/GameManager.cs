@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        bullettype = inventory[0];
     }
 
     public void ShootCard()
@@ -221,6 +222,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        bullettype = inventory[0];
     }
 
 
