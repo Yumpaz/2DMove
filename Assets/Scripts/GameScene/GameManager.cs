@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
     private int scorevalue = 0, health;
-    private float timer, timeBetweenFiring = 0.4f;
+    private float timer, timeBetweenFiring = 0.4f, difficulty;
     private GameState _gameState = GameState.start;
     string[] inventory = new string[5];
     public Sprite paper, scissors, rock;

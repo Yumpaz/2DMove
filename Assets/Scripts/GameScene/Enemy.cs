@@ -9,17 +9,19 @@ public class Enemy : MonoBehaviour
     public Sprite rock, paper, scissors, empty;
     public GameObject StatusCard;
     private Rigidbody2D rb;
+    public static Enemy Instance;
 
     private void Awake()
     {
         SetEnemyStatus();
         HideStatus();
         rb = this.GetComponent<Rigidbody2D>();
+        Instance = this;
     }
 
     private void Update()
     {
-        rb.velocity = new Vector3(0, -2, 0);
+        rb.velocity = new Vector3(0, -PlayerPrefs.GetFloat("difficulty"), 0);
     }
 
     private void SetEnemyStatus()
