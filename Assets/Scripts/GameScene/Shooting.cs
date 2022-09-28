@@ -6,7 +6,7 @@ public class Shooting : MonoBehaviour
 {
     private Camera mainCam;
     private Vector3 mousePos, rotation;
-    private float rotZ, timer, timeBetweenFiring = 0.4f;
+    private float rotZ, timer, timeBetweenFiring = 0.3f;
     public GameObject bullet, brock, bpaper, bscissors;
     public Transform bulletTransform;
     public bool canFire;
