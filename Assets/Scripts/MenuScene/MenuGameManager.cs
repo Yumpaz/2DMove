@@ -18,5 +18,6 @@ public class MenuGameManager : MonoBehaviour
     public void OnHowToPlayClick()
     {
         HowToPlay.sprite = HowToPlayPressed;
+        SceneManager.LoadScene("HowToPlay");
     }
 }

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private bool canFire;
     public Texture2D crosshair;
     public EnemySpawner Spawner;
+    public AudioSource PlayerHit, EnemyHit;
 
     private void Awake()
     {
@@ -259,6 +260,7 @@ public class GameManager : MonoBehaviour
         if(health > 0)
         {
             health --;
+            PlayPlayerHit();
         }
         MenuManager.Instance.SetHealth(health);
         ScreenShake.Instance.SetStart();
@@ -276,6 +278,16 @@ public class GameManager : MonoBehaviour
     public int GetHealth()
     {
         return health;
+    }
+
+    public void PlayPlayerHit()
+    {
+        PlayerHit.Play();
+    }
+
+    public void PlayEnemyHit()
+    {
+        EnemyHit.Play();
     }
 
     public enum GameState
