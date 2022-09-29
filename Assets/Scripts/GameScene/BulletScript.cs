@@ -100,6 +100,7 @@ public class BulletScript : MonoBehaviour
                     }
                     break;
             }
+            GameManager.Instance.PlayEnemyHit();
         }
     }
 }

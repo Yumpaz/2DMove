@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HowToPlayGameManager : MonoBehaviour
 {
     [SerializeField] public Image Back, Next, Tutorial;
-    public Sprite BackPressed, BackNormal, NextPressed, NextNormal, HUD, HowToMove, HowToDown, HowToDash, HowToAttack, EnemyCard;
+    public Sprite BackPressed, BackNormal, NextPressed, NextNormal, HUD, HowToMove, HowToDown, HowToDash, HowToAttack, EnemyCard, HowToWin;
     private int list;
 
     private void Awake()
@@ -42,6 +42,10 @@ public class HowToPlayGameManager : MonoBehaviour
             case (5):
                 list = 4;
                 Tutorial.sprite = HowToAttack;
+                break;
+            case (6):
+                list = 5;
+                Tutorial.sprite = EnemyCard;
                 break;
         }
     }
@@ -79,6 +83,10 @@ public class HowToPlayGameManager : MonoBehaviour
                 Tutorial.sprite = EnemyCard;
                 break;
             case (5):
+                list = 6;
+                Tutorial.sprite = HowToWin;
+                break;
+            case (6):
                 SceneManager.LoadScene("SelectDifficulty");
                 break;
         }
